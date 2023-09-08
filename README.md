@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# GitHub User Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React application that integrates with the GitHub API. It allows users to search for up to 5 GitHub users based on a username similarity entered in a text input field. When a user is selected, it displays their repositories with no limit on the number of displayed repositories.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Search for GitHub users by username similarity.
+- Display up to 5 matching GitHub users.
+- Select a GitHub user to view their repositories.
+- Display the repositories of the selected user with no limits.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React: A JavaScript library for building user interfaces.
+- TypeScript: A statically typed superset of JavaScript.
+- Axios: A promise-based HTTP client for making requests to the GitHub API.
+- Chakra UI: A simple, modular, and accessible component library for building user interfaces.
+- Styled-components: A CSS-in-JS library for styling React components.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+To run this application locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone this repository to your local machine:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/Dickyrdiar/user_github_search.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```baseh
+  cd github-user-search-app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install dependencies:
 
-### `npm run eject`
+  ```bash
+  npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Start the development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ```bash
+  npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Usage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Enter a GitHub username similarity in the text input field and 2. click the "Search" button.
+3. Up to 5 matching GitHub users will be displayed.
+4. Click on a user to view their repositories.
+5. The user's repositories will be displayed with no limits.
 
-## Learn More
+## Contributing
+Contributions are welcome! Feel free to open issues and pull requests to improve this project.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgments
+1. This project was inspired by the need to explore GitHub API  integration in a React application.
+2. Thanks to the open-source community for providing valuable tools and libraries.
