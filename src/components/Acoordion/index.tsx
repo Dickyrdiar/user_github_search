@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, StarIcon } from '@chakra-ui/icons';
 import {
   Accordion as ChakraAccordion,
   AccordionButton,
@@ -10,7 +10,7 @@ import {
   Spinner,
   Text
 } from '@chakra-ui/react';
-import styled from 'styled-components';
+import styled from "styled-components";
 import { useGithubAPi } from '../../customHooks/github_search';
 
 interface AccordionProps {
@@ -41,8 +41,6 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
         <AccordionPanel>{isOpen && (
           <DisplayContent>
             <Box>
-              {/* {children}
-              <RepoDescription>this is repo</RepoDescription> */}
               {repositories.map((value) => (
                 <>
                   <CardAccordion>
@@ -51,15 +49,18 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
                         <Description>{value.description}</Description>
                       </Box>
 
-                      <DisplayStart>
-                        <Box>
-                          {/* {value?.stargazers_url} */}
-                          {value.stargazers_count}
-                        </Box>
-                        <Box>
-                          iconStart
-                        </Box>
-                      </DisplayStart>
+                      {loading ? (
+                        <LoadingSpinner size={'xs'} />
+                      ) : (
+                        <DisplayStart>
+                          <Box>
+                            {value.stargazers_count}
+                          </Box>
+                          <Box>
+                            <StarIcon boxSize={4} color={'yellow.500'} />
+                          </Box>
+                        </DisplayStart>
+                      )}
                     </CardAccordion>
                 </>
               ))}
@@ -114,5 +115,11 @@ const CardAccordion = styled(Box)`
 
 const DisplayStart = styled(Flex)`
   grid-template-columns: repeat(3, 1fr);
-  gap: 9px
+  gap: 9px;
 `
+const LoadingSpinner = styled(Spinner)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

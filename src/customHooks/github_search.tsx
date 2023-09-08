@@ -30,9 +30,9 @@ export const useGithubAPi = () => {
   }
 
   const getUsersRepositories = async () => {
+    setLoading(true)
     if (selectedUser) {
      try {
-      setLoading(true)
       const respoonse = await axios.get(
         `https://api.github.com/users/${selectedUser}/repos`
       )
@@ -41,6 +41,7 @@ export const useGithubAPi = () => {
       setRepositories(repos)
      } catch (error) {
         console.log(error)
+        setLoading(false)
       }
     }
   }
