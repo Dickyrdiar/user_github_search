@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDownIcon, StarIcon } from '@chakra-ui/icons';
 import {
   Accordion as ChakraAccordion,
@@ -43,25 +43,27 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
             <Box>
               {repositories.map((value) => (
                 <>
-                  <CardAccordion>
+                  <CardAccordion key={value.id}>
+                   {loading ? (
+                     <LoadingSpinner size={'sx'} />
+                   ) : (
+                    <>
                       <Box>
                         <RepoDescription>{value.name}</RepoDescription>
                         <Description>{value.description}</Description>
                       </Box>
 
-                      {loading ? (
-                        <LoadingSpinner size={'xs'} />
-                      ) : (
-                        <DisplayStart>
-                          <Box>
-                            {value.stargazers_count}
-                          </Box>
-                          <Box>
-                            <StarIcon boxSize={4} color={'yellow.500'} />
-                          </Box>
-                        </DisplayStart>
-                      )}
-                    </CardAccordion>
+                      <DisplayStart>
+                        <Box>
+                          {value.stargazers_count}
+                        </Box>
+                        <Box>
+                          <StarIcon boxSize={4} color={'yellow.500'} />
+                        </Box>
+                      </DisplayStart>
+                    </>
+                   )}
+                  </CardAccordion>
                 </>
               ))}
             </Box>
