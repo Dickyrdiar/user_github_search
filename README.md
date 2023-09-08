@@ -32,19 +32,19 @@ To run this application locally, follow these steps:
 
 2. Navigate to the project directory:
 
-  ````baseh
+  ```bash
   cd github-user-search-app
-
+  ```
 3. Install dependencies:
 
   ```baseh
   npm install
-
+  ```
 4. Start the development server:
 
   ```baseh
   npm start
-
+  ```
 
 ## Usage
 
