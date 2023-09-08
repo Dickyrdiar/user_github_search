@@ -13,18 +13,13 @@ const DashboardSearch = () => {
     username,
     setUsername,
     users,
-    setSelectedUser,
-    repositories,
     searchUsers,
 
   } = useGithubAPi()
 
   const handleSearch = () => {
     searchUsers()
-  }
-
-  console.log("user", users, repositories);
-  
+  }  
 
   return (
     <StyledCotainer> 
