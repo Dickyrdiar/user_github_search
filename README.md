@@ -17,6 +17,8 @@ This is a React application that integrates with the GitHub API. It allows users
 - Chakra UI: A simple, modular, and accessible component library for building user interfaces.
 - Styled-components: A CSS-in-JS library for styling React components.
 
+
+
 ## Getting Started
 
 To run this application locally, follow these steps:
@@ -26,20 +28,23 @@ To run this application locally, follow these steps:
    ```bash
    git clone https://github.com/Dickyrdiar/user_github_search.git
 
+   ```
+
 2. Navigate to the project directory:
 
-  ```baseh
+  ````baseh
   cd github-user-search-app
 
 3. Install dependencies:
 
-  ```bash
+  ```baseh
   npm install
 
 4. Start the development server:
 
-  ```bash
+  ```baseh
   npm start
+
 
 ## Usage
 
@@ -52,8 +57,10 @@ To run this application locally, follow these steps:
 Contributions are welcome! Feel free to open issues and pull requests to improve this project.
 
 ## License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgments
+
 1. This project was inspired by the need to explore GitHub API  integration in a React application.
 2. Thanks to the open-source community for providing valuable tools and libraries.

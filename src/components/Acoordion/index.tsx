@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Accordion as ChakraAccordion,
@@ -6,25 +6,33 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Flex,
+  Spinner,
+  Text
 } from '@chakra-ui/react';
 import styled from 'styled-components';
+import { useGithubAPi } from '../../customHooks/github_search';
 
 interface AccordionProps {
   title: string;
   children: React.ReactNode;
+  val: any
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const {setSelectedUser, repositories, loading} = useGithubAPi()
 
-  const toggleAccordion = () => {
+  const toggleAccordion = (val: any) => {
+    console.log(val)
     setIsOpen(!isOpen);
+    setSelectedUser(val)
   };
 
   return (
     <ChakraAccordion>
       <StyledAccordionItem>
-        <AccordionButton onClick={toggleAccordion}>
+        <AccordionButton onClick={() => toggleAccordion(val)}>
           <Box flex="1" textAlign="left">
             {title}
           </Box>
@@ -33,11 +41,28 @@ const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
         <AccordionPanel>{isOpen && (
           <DisplayContent>
             <Box>
-              {children}
-            </Box>
+              {/* {children}
+              <RepoDescription>this is repo</RepoDescription> */}
+              {repositories.map((value) => (
+                <>
+                  <CardAccordion>
+                      <Box>
+                        <RepoDescription>{value.name}</RepoDescription>
+                        <Description>{value.description}</Description>
+                      </Box>
 
-            <Box>
-              Star icon
+                      <DisplayStart>
+                        <Box>
+                          {/* {value?.stargazers_url} */}
+                          {value.stargazers_count}
+                        </Box>
+                        <Box>
+                          iconStart
+                        </Box>
+                      </DisplayStart>
+                    </CardAccordion>
+                </>
+              ))}
             </Box>
           </DisplayContent>
         )}</AccordionPanel>
@@ -60,3 +85,34 @@ const DisplayContent = styled(Box)`
   justify-content: space-between;
 `
 
+const RepoDescription = styled(Text)`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`
+
+const Description = styled(Text)`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 12px;
+`
+
+const CardAccordion = styled(Box)`
+  background-color: #ffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+
+const DisplayStart = styled(Flex)`
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px
+`

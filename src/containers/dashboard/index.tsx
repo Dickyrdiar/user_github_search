@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Container as ChakraContainer } from "@chakra-ui/react";
+import { Box, Container as ChakraContainer, Text } from "@chakra-ui/react";
 import React from "react";
 import styled from "styled-components";
 // import Accordion from "../../components/Acoordion";
@@ -13,7 +13,6 @@ const DashboardSearch = () => {
     username,
     setUsername,
     users,
-    selectedUser,
     setSelectedUser,
     repositories,
     searchUsers,
@@ -24,16 +23,13 @@ const DashboardSearch = () => {
     searchUsers()
   }
 
-  const handleUserClick = (user: string) => {
-    setSelectedUser(user)
-  }
-
-  console.log("user", users);
+  console.log("user", users, repositories);
   
 
   return (
-    <StyledCotainer>
+    <StyledCotainer> 
       <Container>
+        <Title>GitHub repositories explorer</Title>
         <InputContainer>
           <SearchInput
             type="text"
@@ -43,14 +39,15 @@ const DashboardSearch = () => {
             onClick={handleSearch}
           />
         </InputContainer>
-        <ContainerCard>
+      </Container>
+
+      <ContainerCard>
           <Card>
             {users.map((user) => (
-              <AccordionComponent title={user} children={'accordion'}/>
+              <AccordionComponent title={user} children={'accordion'} val={user}/>
             ))}
           </Card>
         </ContainerCard>
-      </Container>
     </StyledCotainer>
   )
 }
@@ -63,7 +60,13 @@ const StyledCotainer = styled(ChakraContainer)`
   @media (max-width: 768px) {
     padding: 0.5rem
   }
-  width: 90wh;
+  margin-top: 200px;
+`
+
+const Title = styled(Text)`
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -20px;
 `
 
 const Container = styled(Box)`
@@ -71,7 +74,8 @@ const Container = styled(Box)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* Adjust the height as needed */
+  height: 50vh; 
+  margin-top: -30%;
 `
 
 const InputContainer = styled(Box)`
@@ -79,7 +83,8 @@ const InputContainer = styled(Box)`
   align-items: center;
   justify-content: center;
   display: flex;
+  margin-top: 30px;
 `
 const ContainerCard = styled(Box)`
-  margin-top: 20px;
+  margin-top: -24%;
 `

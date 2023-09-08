@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios"
 import { useEffect, useState } from "react"
 
 interface Repository {
   id: number
   name: string
-  description: string
+  description: string,
+  stargazers_count: number
 }
 
 export const useGithubAPi = () => {
@@ -12,6 +14,7 @@ export const useGithubAPi = () => {
   const [users, setUsers] = useState<string[]>([])
   const [selectedUser, setSelectedUser] = useState<string | null>(null)
   const [repositories, setRepositories] = useState<Repository[]>([])
+  const [loading, setLoading] = useState(false)
 
   const searchUsers = async () => {
     try {
@@ -29,6 +32,7 @@ export const useGithubAPi = () => {
   const getUsersRepositories = async () => {
     if (selectedUser) {
      try {
+      setLoading(true)
       const respoonse = await axios.get(
         `https://api.github.com/users/${selectedUser}/repos`
       )
@@ -55,5 +59,6 @@ export const useGithubAPi = () => {
     setSelectedUser,
     repositories,
     searchUsers,
+    loading
   }
 }
