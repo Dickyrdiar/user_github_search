@@ -22,6 +22,9 @@ const SearchInput: React.FC<FormInputProps> = ({value, placeholder, onChange, ty
         onChange={onChange} 
         placeholder={placeholder} 
         type={type}
+        style={{
+          color: 'color: #333'
+        }}
       />
       <SearchButton onClick={onClick} colorScheme={'teal'} size="md" type="submit">
         Search
