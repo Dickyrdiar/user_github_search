@@ -3,11 +3,15 @@ import { keyboardKey } from "@testing-library/user-event"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
+
+
 interface Repository {
   id: number
   name: string
   description: string,
   stargazers_count: number
+  avatar_url: string
+  // image_profile: 
 }
 
 export const useGithubAPi = () => {
@@ -20,7 +24,6 @@ export const useGithubAPi = () => {
 
 
   const searchUsers = async () => {
-    setLoading(true)
     try {
       const response = await axios.get(
         `https://api.github.com/search/users?q=${username}&per_page=5`
@@ -28,6 +31,7 @@ export const useGithubAPi = () => {
 
       const usernames = response.data.items.map((user: any) => user.login)
       setUsers(usernames)
+      setError(null)
     } catch (error) {
       // setError(error)
       console.log(error)
@@ -37,8 +41,6 @@ export const useGithubAPi = () => {
   }
 
   const getUsersRepositories = async () => {
-    setLoading(true)
-    setError(null)
     if (selectedUser) {
        try {
         const respoonse = await axios.get(
@@ -47,6 +49,7 @@ export const useGithubAPi = () => {
 
         const repos: Repository[] = respoonse.data
         setRepositories(repos)
+        setError(null)
       } catch (error) {
         console.log(error)
         setLoading(false)
@@ -72,9 +75,15 @@ export const useGithubAPi = () => {
 
   useEffect(() => {
     if (selectedUser) {
+      setLoading(true)
       getUsersRepositories()
     }
-  }, [selectedUser])
+
+    if (username) {
+      setLoading(true)
+      searchUsers()
+    }
+  }, [selectedUser, username])
 
   return {
     username,

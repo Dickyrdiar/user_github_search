@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Container as ChakraContainer, Text, CSSReset } from "@chakra-ui/react";
+import { Box, Container as ChakraContainer, Text, CSSReset, Spinner } from "@chakra-ui/react";
 import React from "react";
 import styled from "styled-components";
 // import Accordion from "../../components/Acoordion";
@@ -15,12 +15,15 @@ const DashboardSearch = () => {
     setUsername,
     users,
     searchUsers,
-
+    loading
   } = useGithubAPi()
 
   const handleSearch = () => {
     searchUsers()
   }  
+
+  console.log("user", users);
+  
 
   return (
     <>
@@ -40,6 +43,7 @@ const DashboardSearch = () => {
           </Container>
 
           <ContainerCard>
+          {loading && <LoadingSpinner size={'xs'} />}
             <Card>
               {users.map((user) => (
                 <AccordionComponent title={user} children={'accordion'} val={user} />
@@ -67,6 +71,22 @@ const BackgroundWaves = styled(Box)`
   align-items: center;
   color: #333;
 `;
+
+const LoadingSpinner = styled(Spinner)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #0099ff;
+`;
+
+
+const RoundedImage = styled(Box)`
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+`
 
 const StyledCotainer = styled(ChakraContainer)`
   background-color: #ffff;

@@ -29,6 +29,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
     setSelectedUser(val)
   };
 
+  console.log("repo", repositories)
+
   return (
     <ChakraAccordion>
       <StyledAccordionItem>
@@ -44,9 +46,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
               {repositories.map((value) => (
                 <>
                   <CardAccordion key={value.id}>
-                   {loading ? (
-                     <LoadingSpinner size={'sx'} />
-                   ) : (
+                    {loading && <LoadingSpinner size={'xs'} />}
                     <>
                       <Box>
                         <RepoDescription>{value.name}</RepoDescription>
@@ -62,7 +62,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, val }) => {
                         </Box>
                       </DisplayStart>
                     </>
-                   )}
+                  
                   </CardAccordion>
                 </>
               ))}
@@ -124,4 +124,5 @@ const LoadingSpinner = styled(Spinner)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #0099ff;
 `;
